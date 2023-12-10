@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/mainView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        />
+
+    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:mbn_circleColor="#FF3936"
+        app:mbn_backgroundBottomColor="@color/color_iconBottom"
+        app:mbn_countBackgroundColor="#FFFFFF"
+        app:mbn_countTextColor="#ff6f00"
+        app:mbn_defaultIconColor="#FFFFFF"
+        app:mbn_rippleColor="#FB8A19"
+        app:mbn_selectedIconColor="#FFFFFF"
+        app:mbn_shadowColor="#2DFF7F11"
+        android:id="@+id/bottomNavigation"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintTop_toBottomOf="@id/mainView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/color_mainStream"
+        />
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragmentLogin"
+        android:elevation="5dp"
+        android:visibility="gone"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
