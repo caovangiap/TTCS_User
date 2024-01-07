@@ -50,13 +50,13 @@ class FragmentUser : Fragment() {
                     binding?.userGmailAccount?.text = account.email
 
                     // lay thong tin dang nhap
-                    HandleLogin().firebaseAuthWithGoogle(account,viewModelLogin)
+                    HandleLogin().firebaseAuthWithGoogle(account,viewModelLogin,requireActivity())
                 } catch (e: ApiException) {
                     // Xử lý lỗi
                     Log.d("FragmentUser",e.toString())
                 }
             }
-
+            Log.d("FragmentUser",result.resultCode.toString())
         }
         return binding?.root
     }

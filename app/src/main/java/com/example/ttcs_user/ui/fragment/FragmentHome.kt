@@ -50,10 +50,10 @@ class FragmentHome : Fragment() {
     private fun setUpTabLayout(){
         TabLayoutMediator(binding?.myTabLayOut!!, binding?.viewFragmentManager!!) { tab, position ->
             binding?.viewFragmentManager?.setCurrentItem(tab.position, true)
-            if (position == 1){
+            if (position == 0){
                 tab.text = "Shoe"
             }
-            if (position == 0) {
+            if (position == 1) {
                 tab.text = "Accessory"
             }
         }.attach()
@@ -63,5 +63,6 @@ class FragmentHome : Fragment() {
         binding?.viewFragmentManager?.adapter = AdapterViewFragmentHome(childFragmentManager,lifecycle)
         binding?.viewFragmentManager?.isUserInputEnabled = false
     }
+
 
 }

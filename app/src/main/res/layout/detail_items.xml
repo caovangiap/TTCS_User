@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/ToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="Detail Product"
+
+        />
+
+
+    <ScrollView
+        android:id="@+id/detail_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:measureAllChildren="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:fitsSystemWindows="true"
+            android:measureAllChildren="true"
+            tools:context=".Detail">
+
+            <ImageView
+                android:id="@+id/view_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintDimensionRatio="H,1:1.25"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/Image_view1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:background="#00000000"
+                android:elevation="5dp"
+                android:scaleType="fitXY"
+                app:layout_constraintHeight_percent="0.08"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_fragment"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <ImageView
+                android:id="@+id/Image1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/Image_view1"
+                app:layout_constraintLeft_toLeftOf="@+id/Image_view1"
+                app:layout_constraintRight_toRightOf="@+id/Image_view1"
+                app:layout_constraintTop_toTopOf="@+id/Image_view1"/>
+
+            <Button
+                android:id="@+id/Image_view2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:background="#00000000"
+                android:elevation="5dp"
+                android:scaleType="fitXY"
+                app:layout_constraintHeight_percent="0.08"
+                app:layout_constraintHorizontal_bias="0.09"
+                app:layout_constraintLeft_toRightOf="@+id/Image_view1"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_fragment"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <ImageView
+                android:id="@+id/Image2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/Image_view2"
+                app:layout_constraintLeft_toLeftOf="@+id/Image_view2"
+                app:layout_constraintRight_toRightOf="@+id/Image_view2"
+                app:layout_constraintTop_toTopOf="@+id/Image_view2">
+
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/product_type"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:text="@string/product"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintHeight_percent="0.025"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Image_view1"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <TextView
+                android:id="@+id/product_name"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                app:layout_constraintHeight_percent="0.035"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/product_type"
+                app:layout_constraintWidth_percent="0.6"
+
+                />
+
+            <TextView
+                android:id="@+id/product_price"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="bottom"
+                android:textColor="#5C5C5C"
+                android:textSize="20sp"
+                app:layout_constraintHeight_percent="0.03"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/product_name"
+                app:layout_constraintWidth_percent="0.6"
+
+                />
+
+            <TextView
+                android:id="@+id/product_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/product_price"
+                app:layout_constraintVertical_bias="0" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/Select_Size"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                app:cornerRadius="20dp"
+                android:text="@string/select_size"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:backgroundTint="#BABABA"
+                android:textSize="20sp"
+                app:layout_constraintHeight_percent="0.033"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/product_description"
+                app:layout_constraintWidth_percent="0.8" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/Add_to_Bag"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/black"
+                app:cornerRadius="20dp"
+                android:gravity="center"
+                android:text="@string/add_to_bag"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:layout_constraintHeight_percent="0.033"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Select_Size"
+                app:layout_constraintWidth_percent="0.8" />
+
+
+            <TextView
+                android:id="@+id/also"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:gravity="center_vertical"
+                android:text="@string/you_might_also_like"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Add_to_Bag"
+                app:layout_constraintWidth_percent="1" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

@@ -5,4 +5,8 @@
     <string name="rate_us_5_start">Rate Us 5 Start</string>
     <string name="log_out">Log Out</string>
     <string name="search">search</string>
+    <string name="select_size">Select Size</string>
+    <string name="add_to_bag">ADD TO BAG</string>
+    <string name="you_might_also_like">You Might Also Like</string>
+    <string name="product">Product</string>
 </resources>
