@@ -28,12 +28,20 @@ class HandleLogin {
     /**
      * handle when login success
      */
-    fun firebaseAuthWithGoogle(account: GoogleSignInAccount, viewModelLogin: ViewModelLogin?) {
-        // update information login
-        viewModelLogin?.imageUser?.postValue(account.photoUrl.toString())
-        viewModelLogin?.nameUser?.postValue(account.displayName)
-        viewModelLogin?.emailUser?.postValue(account.email)
+    fun firebaseAuthWithGoogle(account: GoogleSignInAccount, viewModelLogin: ViewModelLogin?,activity: Activity) {
 
+        val credential =  GoogleAuthProvider.getCredential(account.idToken, null)
+        FirebaseAuth.getInstance().signInWithCredential(credential)
+            .addOnCompleteListener(activity) { task ->
+                if (task.isSuccessful) {
+                    // update information login
+                    viewModelLogin?.imageUser?.postValue(account.photoUrl.toString())
+                    viewModelLogin?.nameUser?.postValue(account.displayName)
+                    viewModelLogin?.emailUser?.postValue(account.email)
+                } else {
+                    Log.d("HandleLogin",task.toString())
+                }
+            }
     }
 
 }
