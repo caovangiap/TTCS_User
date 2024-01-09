@@ -8,17 +8,22 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.example.ttcs_user.processBag.modelOrder.Bag
 import com.example.ttcs_user.R
 import com.example.ttcs_user.databinding.DetailItemsBinding
 import com.example.ttcs_user.getData.ViewModelGetData
 import com.example.ttcs_user.model.product.ProductShoe
+import com.example.ttcs_user.model.productaccessory.AccessoryData
+import com.example.ttcs_user.processBag.HandleBuyProduct
 import java.text.NumberFormat
 
 class DialogDetailItems : DialogFragment(){
 
     private var binding : DetailItemsBinding? = null
     private var viewModel : ViewModelGetData? = null
-    private var dataDetail : ProductShoe? =null
+    private var dataShoe : ProductShoe? =null
+    private var detailAccessory : AccessoryData? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,7 +70,7 @@ class DialogDetailItems : DialogFragment(){
         viewModel?.detailProductShoe?.observe(viewLifecycleOwner){
 
             if (it!=null){
-                dataDetail = it
+                dataShoe = it
 
                 Glide.with(requireContext())
                     .load(it.Image?.URL1?.IG1)
@@ -77,13 +82,13 @@ class DialogDetailItems : DialogFragment(){
 
                 binding?.ImageView1?.setOnClickListener {
                     Glide.with(requireContext())
-                        .load(dataDetail?.Image?.URL1?.IG1)
+                        .load(dataShoe?.Image?.URL1?.IG1)
                         .into(binding!!.viewFragment)
                 }
 
                 binding?.ImageView2?.setOnClickListener {
                     Glide.with(requireContext())
-                        .load(dataDetail?.Image?.URL2?.IG1)
+                        .load(dataShoe?.Image?.URL2?.IG1)
                         .into(binding!!.viewFragment)
                 }
 
@@ -93,6 +98,20 @@ class DialogDetailItems : DialogFragment(){
 
                 binding?.productName?.text = it.Name
                 changeMoney(it.Price)
+
+
+                binding?.AddToBag?.setOnClickListener {
+                    val productBag = Bag(null,
+                        dataShoe!!.Name,
+                        dataShoe!!.Condition,
+                        dataShoe!!.Price,
+                        dataShoe!!.Size,
+                        dataShoe!!.Image?.URL2?.IG1,
+                        1)
+
+                    addToBag(productBag)
+                }
+
             }
 
         }
@@ -103,7 +122,7 @@ class DialogDetailItems : DialogFragment(){
           */
         viewModel?.detailProductAccessory?.observe(viewLifecycleOwner){
             if (it!=null){
-                val detail = it
+                detailAccessory = it
                 Glide.with(this)
                     .load(it.Image)
                     .into(binding!!.Image1)
@@ -114,13 +133,13 @@ class DialogDetailItems : DialogFragment(){
 
                 binding?.ImageView1?.setOnClickListener {
                     Glide.with(this)
-                        .load(detail.Image)
+                        .load(detailAccessory?.Image)
                         .into(binding!!.Image1)
                 }
 
                 binding?.ImageView2?.setOnClickListener {
                     Glide.with(this)
-                        .load(detail.Image)
+                        .load(detailAccessory?.Image)
                         .into(binding!!.Image1)
                 }
                 Glide.with(requireContext())
@@ -129,6 +148,18 @@ class DialogDetailItems : DialogFragment(){
 
                 binding?.productName?.text = it.Name
                 changeMoney(it.Price)
+
+                binding?.AddToBag?.setOnClickListener {
+                    val productBag = Bag(null,
+                        detailAccessory!!.Name,
+                        detailAccessory!!.Condition,
+                        detailAccessory!!.Price,
+                        detailAccessory!!.Size,
+                        detailAccessory!!.Image,
+                        1)
+
+                    addToBag(productBag)
+                }
             }
         }
 
@@ -162,6 +193,11 @@ class DialogDetailItems : DialogFragment(){
         }
 
 
+    }
+
+    private fun addToBag(product : Bag){
+        HandleBuyProduct().addToBag(requireContext(),product)
+        dismiss()
     }
 
 
