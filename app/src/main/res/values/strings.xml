@@ -11,4 +11,15 @@
     <string name="product">Product</string>
     <string name="total">Total :</string>
     <string name="check_out">Check Out</string>
+    <string name="use_name">Use Name</string>
+    <string name="what_your_name">What Your Name ?</string>
+    <string name="what_your_phone_number">What Your Phone Number?</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="what_your_email">What Your Notification ?</string>
+    <string name="my_notification">My Notification</string>
+    <string name="what_is_your_dress">What is Your Dress</string>
+    <string name="my_dress">My Dress</string>
+    <string name="my_order">My Order</string>
+    <string name="accept">Accept</string>
+
 </resources>

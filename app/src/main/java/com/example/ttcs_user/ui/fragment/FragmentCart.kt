@@ -7,12 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ttcs_user.databinding.FragmentBagBinding
+import com.example.ttcs_user.processBag.ViewModelCheckOut
 import com.example.ttcs_user.processBag.modelOrder.AppDatabase
 import com.example.ttcs_user.processBag.modelOrder.Bag
 import com.example.ttcs_user.ui.adapter.AdapterBag
 import com.example.ttcs_user.ui.adapter.EventClick
+import com.example.ttcs_user.ui.dialog.DialogCheckOrder
 import java.text.NumberFormat
 
 /**
@@ -21,7 +24,7 @@ import java.text.NumberFormat
 class FragmentCart : Fragment(), EventClick {
 
     private var binding : FragmentBagBinding? = null
-
+    private var viewModel : ViewModelCheckOut?  = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,6 +32,7 @@ class FragmentCart : Fragment(), EventClick {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBagBinding.inflate(inflater,container,false)
+        viewModel = ViewModelProvider(requireActivity())[ViewModelCheckOut::class.java]
         return binding?.root
     }
 
@@ -49,14 +53,20 @@ class FragmentCart : Fragment(), EventClick {
             binding?.AllItems?.adapter = adapter
             binding?.AllItems?.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+            allTotal(it)
+        }
+
+        binding?.Checkout?.setOnClickListener {
+            checkOutOrder()
         }
 
     }
 
-    override fun remove(position: Int) {
-
-        Log.d("d",position.toString())
-
+    override fun remove(data: Bag) {
+        val dataBase = AppDatabase.getDataBase(requireContext()).bag()
+        dataBase.delete(data)
+        Log.d("d",data.toString())
     }
 
 
@@ -72,8 +82,13 @@ class FragmentCart : Fragment(), EventClick {
         numberFormat.maximumFractionDigits = 0
         val convert = numberFormat.format(total)
         // set text tổng tiền
-        binding?.Total?.text = "Total :$convert"
+        binding?.Total?.text = convert
+        viewModel?.totalOrder?.postValue(convert)
+    }
 
+    private fun checkOutOrder(){
+        val dialog = DialogCheckOrder()
+        dialog.show(parentFragmentManager,"dialogCheckOrder")
     }
 
 

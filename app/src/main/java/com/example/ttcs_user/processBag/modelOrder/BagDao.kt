@@ -18,6 +18,6 @@ interface BagDao {
     fun delete(Product: Bag)
     @Update
     fun updateUsers(vararg users: Bag)
-    @Delete
-    fun DeleteAll(all: MutableList<Bag>)
+    @Query("DELETE FROM Bag")
+    fun deleteAll()
 }

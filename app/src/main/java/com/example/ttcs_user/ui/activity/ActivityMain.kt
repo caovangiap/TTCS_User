@@ -17,11 +17,13 @@ class ActivityMain : AppCompatActivity() {
     private var viewModelGetData : ViewModelGetData? = null
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         viewModelGetData = ViewModelProvider(this)[ViewModelGetData::class.java]
         setContentView(binding?.root)
+
         allFunction()
     }
 

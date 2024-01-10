@@ -18,7 +18,7 @@ import java.text.NumberFormat
 
 
 interface EventClick{
-    fun remove(position: Int)
+    fun remove(data: Bag)
 }
 
 class AdapterBag (val data: MutableList<Bag>, private val remove : EventClick) : RecyclerView.Adapter<AdapterBag.ViewHolder>() {
@@ -68,17 +68,14 @@ class AdapterBag (val data: MutableList<Bag>, private val remove : EventClick) :
 
 
         holder.button.setOnClickListener {
-            remove.remove(position)
+            remove.remove(data[position])
+            data.remove(data[position])
+            notifyItemRemoved(position)
+            Log.d("Adapter",position.toString())
         }
     }
 
     override fun getItemCount(): Int {
         return data.size
-    }
-
-    fun removeItem(position: Int) {
-        data.remove(data[position])
-        notifyItemRemoved(position)
-        Log.d("Adapter",position.toString())
     }
 }
