@@ -66,6 +66,7 @@ class FragmentHistory : Fragment() {
                             adapter.removeItem(position)
                         }
                     })
+
                     binding?.HistoryBuy?.adapter =
                         adapter
                     binding?.HistoryBuy?.layoutManager =
