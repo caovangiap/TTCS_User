@@ -24,12 +24,12 @@ class HandleBuyProduct {
     private var conditionAddress = false
     private var conditionPhone = false
 
-    // instantce cuar fire store
-    val db = Firebase.firestore
+    // instance cuar fire store
+    private val db = Firebase.firestore
 
     // id cua user
-    val user = Firebase.auth.currentUser
-    var data = arrayListOf<Bag>()
+    private val user = Firebase.auth.currentUser
+
 
     fun addToBag(mContext : Context, product : Bag){
 
@@ -45,7 +45,8 @@ class HandleBuyProduct {
         inputNotification: String,
         inputAdress: String,
         viewModel: ViewModelCheckOut?,
-        requireContext: Context
+        requireContext: Context,
+        dataBag : MutableList<Bag>,
     ) {
 
         checkName(checkName!!,viewModel)
@@ -54,7 +55,7 @@ class HandleBuyProduct {
         checkAddress(inputAdress,viewModel)
         if (conditionName && conditionAddress && conditionEmail && conditionPhone) {
 
-            successCheckOut(checkName, phoneNumber, inputNotification, inputAdress, viewModel,requireContext)
+            successCheckOut(checkName, phoneNumber, inputNotification, inputAdress, viewModel,requireContext, dataBag)
 
         }
     }
@@ -81,7 +82,7 @@ class HandleBuyProduct {
 
 
     // ham check dieu kien sđt
-    fun mobiValidate(input: String): Boolean {
+    private fun mobiValidate(input: String): Boolean {
         val p = Pattern.compile("[0][0-9]{9}")
         val m = p.matcher(input)
         return m.matches()
@@ -89,18 +90,18 @@ class HandleBuyProduct {
 
 
     // check email
-    fun checkNotification(inputEmail: String, viewModel: ViewModelCheckOut?) {
-        if (inputEmail == "") {
+    private fun checkNotification(inputEmail: String, viewModel: ViewModelCheckOut?) {
+        conditionEmail = if (inputEmail == "") {
             viewModel?.requiredNotification?.postValue("khong co chu thich gi ?")
-            conditionEmail = true
+            true
         } else {
             viewModel?.requiredNotification?.postValue("success")
-            conditionEmail = true
+            true
         }
     }
 
     // check address
-    fun checkAddress(inputAddress: String, viewModel: ViewModelCheckOut?) {
+    private fun checkAddress(inputAddress: String, viewModel: ViewModelCheckOut?) {
         if (inputAddress == "") {
             viewModel?.requiredAddess?.postValue("không được để trống trường này ")
         } else {
@@ -119,7 +120,8 @@ class HandleBuyProduct {
         inputNotification: String,
         inputAddress: String,
         viewModel: ViewModelCheckOut?,
-        requireContext: Context
+        requireContext: Context,
+        dataBag: MutableList<Bag>
     ) {
 
         // chuyen doi time dang second sang string
@@ -137,11 +139,11 @@ class HandleBuyProduct {
                 .set(decidedBuy, SetOptions.merge())
 
             // thong tin san pham
-            for (i in 0 until data.size) {
+            for (i in 0 until dataBag.size) {
                 db.collection("Order").document("${user.uid}+$time")
                     .collection("product")
-                    .document("${data[i].nameProduct} Size: ${data[i].size}")
-                    .set(data[i], SetOptions.merge())
+                    .document("${dataBag[i].nameProduct} Size: ${dataBag[i].size}")
+                    .set(dataBag[i], SetOptions.merge())
             }
             // chuyên đơn hàng sang lịch sử
             viewModel.checkOutSuccess.postValue(Constant.successOrder)
@@ -149,14 +151,14 @@ class HandleBuyProduct {
         }else{
             Toast.makeText(requireContext,"You must login before buy product",Toast.LENGTH_SHORT).show()
         }
+
     }
 
-    fun converTime(seconds: Long): String {
+    private fun converTime(seconds: Long): String {
         val hours = seconds / 3600
         val minutes = (seconds % 3600) / 60
         val second = seconds % 60
-        val timeString = String.format("%02d:%02d:%02d", hours, minutes, second)
-        return timeString
+        return String.format("%02d:%02d:%02d", hours, minutes, second)
     }
 
 }

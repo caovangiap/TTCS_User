@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">TTCS_User</string>
     <string name="user_setting">User Setting</string>
     <string name="change_language">Change Language</string>
@@ -21,5 +22,6 @@
     <string name="my_dress">My Dress</string>
     <string name="my_order">My Order</string>
     <string name="accept">Accept</string>
+    <string name="history_buy">History Buy</string>
 
 </resources>

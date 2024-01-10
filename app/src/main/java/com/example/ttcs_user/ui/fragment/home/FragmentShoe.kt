@@ -67,7 +67,7 @@ class FragmentShoe : Fragment(), AdapterProduct.Setonclick {
     }
 
     override fun onclick(position: Int) {
-        Log.d("Shoe", "click")
+        Log.d("Shoe", "Click")
         try {
             viewModel?.detailProductShoe?.postValue(productShoe[position])
         }catch (e:Exception){

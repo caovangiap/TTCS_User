@@ -8,14 +8,14 @@ interface BagDao {
     @Query("SELECT * FROM Bag ")
     fun getAll(): LiveData<MutableList<Bag>>
 
-    @Query("SELECT * FROM Bag WHERE Name LIKE :Name_Product  " )
-    fun findByName(Name_Product: String): Bag
+    @Query("SELECT * FROM Bag WHERE Name LIKE :nameProduct  ")
+    fun findByName(nameProduct: String): Bag
 
     @Insert
-    fun insertAll(vararg Product: Bag)
+    fun insertAll(vararg product: Bag)
 
     @Delete
-    fun delete(Product: Bag)
+    fun delete(product: Bag)
     @Update
     fun updateUsers(vararg users: Bag)
     @Query("DELETE FROM Bag")

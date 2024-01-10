@@ -13,11 +13,13 @@ import com.example.ttcs_user.databinding.DialogCheckoutBinding
 import com.example.ttcs_user.processBag.HandleBuyProduct
 import com.example.ttcs_user.processBag.ViewModelCheckOut
 import com.example.ttcs_user.processBag.modelOrder.AppDatabase
+import com.example.ttcs_user.processBag.modelOrder.Bag
 
 class DialogCheckOrder : DialogFragment() {
 
     private var binding : DialogCheckoutBinding? = null
     private var viewModel : ViewModelCheckOut? = null
+    private var dataBag : MutableList<Bag>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,14 +54,24 @@ class DialogCheckOrder : DialogFragment() {
 
     private fun setUpView(){
 
+
+        AppDatabase.getDataBase(requireContext()).bag().getAll().observe(viewLifecycleOwner){
+            dataBag = it
+        }
+
         binding?.check?.setOnClickListener {
-            HandleBuyProduct().checkOut(binding?.CheckName?.text.toString(),
-                binding?.phoneNumber?.text.toString(),
-                binding?.InputEmail?.text.toString(),
-                binding?.InputPassWord?.text.toString(),
-                viewModel,
-                requireContext()
+
+            if (dataBag!=null){
+                HandleBuyProduct().checkOut(binding?.CheckName?.text.toString(),
+                    binding?.phoneNumber?.text.toString(),
+                    binding?.InputEmail?.text.toString(),
+                    binding?.InputPassWord?.text.toString(),
+                    viewModel,
+                    requireContext(),
+                    dataBag!!
                 )
+            }
+
         }
 
         viewModel?.totalOrder?.observe(viewLifecycleOwner){
@@ -88,6 +100,9 @@ class DialogCheckOrder : DialogFragment() {
             binding?.Total?.text = it
         }
 
+        /**
+         * từ handle checkout lắng nghe nguoi dung nhap du thong tin --> checkout --> dismiss va xoa du lieu bag
+         */
         viewModel?.checkOutSuccess?.observe(viewLifecycleOwner){
             if (it == Constant.successOrder){
                 AppDatabase.getDataBase(requireContext()).bag().deleteAll()
@@ -98,7 +113,7 @@ class DialogCheckOrder : DialogFragment() {
         }
         setUpToolBar()
     }
-    fun setUpToolBar(){
+    private fun setUpToolBar(){
 
         binding?.ToolBar?.setNavigationIcon(R.drawable.back)
         //yêu cầu activity điều hướng quay trở lại

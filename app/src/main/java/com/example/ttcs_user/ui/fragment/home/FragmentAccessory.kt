@@ -59,7 +59,7 @@ class FragmentAccessory: Fragment(), AdapterAccessory.Setonclick {
     }
 
     override fun onclick(position: Int) {
-        Log.d("Shoe", "click")
+        Log.d("Shoe", "Click")
         try {
             productAccessory[position]
             viewModel?.detailProductAccessory?.postValue(productAccessory[position])
