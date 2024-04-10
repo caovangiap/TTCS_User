@@ -1,21 +1,26 @@
 package com.example.ttcs_user.ui.activity
 
+import android.content.Context
+import android.content.res.Resources
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
+import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
+import com.akexorcist.localizationactivity.core.OnLocaleChangedListener
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.example.ttcs_user.R
 import com.example.ttcs_user.databinding.ActivityMainBinding
 import com.example.ttcs_user.getData.ViewModelGetData
+import com.example.ttcs_user.ui.UiSetting
 import com.example.ttcs_user.ui.adapter.AdapterMain
 import com.example.ttcs_user.ui.dialog.DialogDetailItems
 
-class ActivityMain : AppCompatActivity() {
+class ActivityMain : AppCompatActivity(), UiSetting {
 
     private var binding : ActivityMainBinding? = null
     private var viewModelGetData : ViewModelGetData? = null
-
+    private val localizationDelegate = LocalizationActivityDelegate(this)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +30,16 @@ class ActivityMain : AppCompatActivity() {
         setContentView(binding?.root)
 
         allFunction()
+        localizationDelegate.addOnLocaleChangedListener(object : OnLocaleChangedListener {
+            override fun onAfterLocaleChanged() {
+
+            }
+
+            override fun onBeforeLocaleChanged() {
+
+            }
+        })
+        localizationDelegate.onCreate()
     }
 
     private fun allFunction(){
@@ -109,6 +124,28 @@ class ActivityMain : AppCompatActivity() {
             dialog.show(supportFragmentManager,"detail accessory")
 
         }
+    }
+
+    override fun changeLanguage(codeLanguage: String, codeCountry: String) {
+        localizationDelegate.setLanguage(this, codeLanguage, codeCountry)
+    }
+
+    public override fun onResume() {
+        super.onResume()
+        localizationDelegate.onResume(this)
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        applyOverrideConfiguration(localizationDelegate.updateConfigurationLocale(newBase))
+        super.attachBaseContext(newBase)
+    }
+
+    override fun getApplicationContext(): Context {
+        return localizationDelegate.getApplicationContext(super.getApplicationContext())
+    }
+
+    override fun getResources(): Resources {
+        return localizationDelegate.getResources(super.getResources())
     }
 
 }

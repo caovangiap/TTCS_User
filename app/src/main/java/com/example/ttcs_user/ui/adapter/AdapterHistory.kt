@@ -66,8 +66,13 @@ class AdapterHistory(private val information: MutableList<Information>, private 
         holder.phoneNumber.text ="SĐT:${information[position].phoneNumber} "
         holder.adress.text = "Địa Chỉ :${information[position].address}"
         holder.price.text = "Tổng Tiền : ${information[position].total}"
-        holder.recycler.adapter = AdapterItems(detailItems[position])
-        holder.recycler.layoutManager = LinearLayoutManager(holder.itemView.context,LinearLayoutManager.VERTICAL,false)
+        try {
+            holder.recycler.adapter = AdapterItems(detailItems[position])
+            holder.recycler.layoutManager = LinearLayoutManager(holder.itemView.context,LinearLayoutManager.VERTICAL,false)
+        }catch (e :Exception){
+            Log.d("AdapterHistory",e.toString())
+        }
+
     }
 
     override fun getItemCount(): Int {

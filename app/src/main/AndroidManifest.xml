@@ -12,14 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TTCS_User"
         tools:targetApi="31"
-
+        android:windowSoftInputMode="stateVisible"
         >
-
 
         <activity
             android:name=".ui.activity.ActivityMain"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"
+
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

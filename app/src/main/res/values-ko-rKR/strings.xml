@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TTCS_사용자</string>
+    <string name="user_setting">사용자 설정</string>
+    <string name="change_language">언어 변경</string>
+    <string name="rate_us_5_start">저희에게 별 5개를 주세요</string>
+    <string name="log_out">로그아웃</string>
+    <string name="search">검색</string>
+    <string name="select_size">사이즈 선택</string>
+    <string name="add_to_bag">가방에 추가하기</string>
+    <string name="you_might_also_like">관심 있을 만한 제품</string>
+    <string name="product">제품</string>
+    <string name="total">총합 :</string>
+    <string name="check_out">결제하기</string>
+    <string name="use_name">이름 사용</string>
+    <string name="what_your_name">당신의 이름은 무엇입니까?</string>
+    <string name="what_your_phone_number">당신의 전화번호는 무엇입니까?</string>
+    <string name="phone_number">전화번호</string>
+    <string name="what_your_email">당신의 알림은 무엇입니까?</string>
+    <string name="my_notification">내 알림</string>
+    <string name="what_is_your_dress">당신의 드레스는 무엇입니까?</string>
+    <string name="my_dress">내 드레스</string>
+    <string name="my_order">내 주문</string>
+    <string name="accept">수락하기</string>
+    <string name="history_buy">구매 내역</string>
+    <string name="accept_change">변경 수락</string>
+</resources>

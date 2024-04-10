@@ -1,6 +1,7 @@
 package com.example.ttcs_user.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,13 +54,14 @@ class FragmentHistory : Fragment() {
             val items = CoroutineScope(Dispatchers.Main).launch {
                 viewModel?.historyItemsBuy?.observe(viewLifecycleOwner){
                     itemsProduct = it
+                    Log.d("FragmentHistory",it.toString())
                 }
             }
-
+            items.join()
 
             val order = CoroutineScope(Dispatchers.Main).launch {
                 viewModel?.historyOrderBuy?.observe(viewLifecycleOwner) {
-
+                    Log.d("FragmentHistory",it.toString())
                     val adapter = AdapterHistory(it, itemsProduct!!)
                     adapter.listener(object : AdapterHistory.Click {
                         override fun clickRemove(position: Int) {
@@ -79,7 +81,6 @@ class FragmentHistory : Fragment() {
                     )
                 }
             }
-            items.join()
             order.join()
         }
 

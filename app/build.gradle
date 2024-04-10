@@ -88,5 +88,8 @@ dependencies {
     kapt 'androidx.room:room-compiler:2.6.1'
     implementation 'androidx.room:room-rxjava2:2.6.1'
 
+    // change language
+    implementation 'com.akexorcist:localization:1.2.11'
+
 
 }

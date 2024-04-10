@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TTCS_Utilisateur</string>
+    <string name="user_setting">Paramètres de l\'utilisateur</string>
+    <string name="change_language">Changer de langue</string>
+    <string name="rate_us_5_start">Notez-nous 5 étoiles</string>
+    <string name="log_out">Se déconnecter</string>
+    <string name="search">Rechercher</string>
+    <string name="select_size">Sélectionner la taille</string>
+    <string name="add_to_bag">AJOUTER AU PANIER</string>
+    <string name="you_might_also_like">Vous pourriez aussi aimer</string>
+    <string name="product">Produit</string>
+    <string name="total">Total :</string>
+    <string name="check_out">Passer à la caisse</string>
+    <string name="use_name">Utiliser le nom</string>
+    <string name="what_your_name">Quel est votre nom ?</string>
+    <string name="what_your_phone_number">Quel est votre numéro de téléphone ?</string>
+    <string name="phone_number">Numéro de téléphone</string>
+    <string name="what_your_email">Quelle est votre notification ?</string>
+    <string name="my_notification">Mes notifications</string>
+    <string name="what_is_your_dress">Quelle est votre robe ?</string>
+    <string name="my_dress">Ma robe</string>
+    <string name="my_order">Ma commande</string>
+    <string name="accept">Accepter</string>
+    <string name="history_buy">Historique d\'achats</string>
+    <string name="accept_change">Accepter le changement</string>
+</resources>

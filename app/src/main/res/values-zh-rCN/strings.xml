@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TTCS_用户</string>
+    <string name="user_setting">用户设置</string>
+    <string name="change_language">更改语言</string>
+    <string name="rate_us_5_start">给我们评价5星</string>
+    <string name="log_out">退出登录</string>
+    <string name="search">搜索</string>
+    <string name="select_size">选择尺寸</string>
+    <string name="add_to_bag">加入购物袋</string>
+    <string name="you_might_also_like">你可能也喜欢</string>
+    <string name="product">产品</string>
+    <string name="total">总计：</string>
+    <string name="check_out">结账</string>
+    <string name="use_name">使用名称</string>
+    <string name="what_your_name">你叫什么名字？</string>
+    <string name="what_your_phone_number">你的电话号码是什么？</string>
+    <string name="phone_number">电话号码</string>
+    <string name="what_your_email">你的通知是什么？</string>
+    <string name="my_notification">我的通知</string>
+    <string name="what_is_your_dress">你的衣服是什么？</string>
+    <string name="my_dress">我的衣服</string>
+    <string name="my_order">我的订单</string>
+    <string name="accept">接受</string>
+    <string name="history_buy">购买历史</string>
+    <string name="accept_change">接受更改</string>
+</resources>

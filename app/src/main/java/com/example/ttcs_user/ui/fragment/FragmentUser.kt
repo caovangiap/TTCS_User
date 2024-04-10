@@ -20,6 +20,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.ttcs_user.databinding.FragmentUserBinding
 import com.example.ttcs_user.login.HandleLogin
 import com.example.ttcs_user.login.ViewModelLogin
+import com.example.ttcs_user.ui.dialog.DialogChangeLanguage
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
 import com.indiandev.smartrateapp.util.RateDialogManager
@@ -80,6 +81,8 @@ class FragmentUser : Fragment() {
         binding?.btnFeedBack?.setOnClickListener {
             feedBackShop(requireContext(),"khongchovao@gmail.com","My FeedBack","I need: ")
         }
+
+        changeLanguage()
     }
 
     /**
@@ -128,6 +131,13 @@ class FragmentUser : Fragment() {
     private fun rateFunction(savedInstanceState: Bundle?) {
         binding?.rateUs?.setOnClickListener {
             RateDialogManager.showRateDialog(requireContext(), savedInstanceState)
+        }
+    }
+
+    private fun changeLanguage(){
+        binding?.btnLanguage?.setOnClickListener {
+            val dialogChangeLanguage = DialogChangeLanguage()
+            dialogChangeLanguage.show(parentFragmentManager,"open")
         }
     }
 

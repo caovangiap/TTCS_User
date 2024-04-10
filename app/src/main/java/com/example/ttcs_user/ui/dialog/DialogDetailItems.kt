@@ -2,6 +2,7 @@ package com.example.ttcs_user.ui.dialog
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -186,10 +187,13 @@ class DialogDetailItems : DialogFragment(){
 
         viewModel?.productSize?.observe(viewLifecycleOwner){
             if (it != null){
-                binding?.SelectSize?.text = "30"
+                binding?.SelectSize?.text = it
+                try {
+                    dialog.dismiss()
+                }catch (e : Exception){
+                    Log.d("TTUser",e.toString())
+                }
             }
-            binding?.SelectSize?.text = it
-            dialog.dismiss()
         }
 
 
